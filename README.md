@@ -6,6 +6,7 @@ NODE JS (CARPETA NODEPA/LOGIN_PA6)
 passport (autenticaciones de base de datos, sesiones y login)
 passport-local
 passport-jwt
+jsonwebtoken
 cryptojs
 bcrypyjs (password hash)
 body-parser
