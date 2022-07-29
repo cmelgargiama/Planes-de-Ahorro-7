@@ -1,0 +1,65 @@
+
+  <div class="body-login">
+    <div class="title">
+    <h1>PA7</h1>
+    <pre></pre>
+    <p>Bienvenido a PA7</p>
+    <pre></pre>
+  </div>
+ <div class="login">
+  <img src="images/fiat500.png" class="rounded float-start">
+    <br>
+    <div class="form">
+      
+      <pre></pre>
+      <p class="form-label">Empresa</p>
+      <title>Empresa:</title>
+      <form action="/" method="post" class="form-group">
+      <select name="selectEmpresas" id="selectEmpresas" class="form-select form-select-sm">
+        <option value="carGroup" id="carGroup">Car Group S.A.</option>
+        <option value="gestionFinanciera" id="gestionFinanciera">Gestion Financiera S.A.</option>
+        <option value="autoNet" id="autoNet">AutoNet S.A</option>
+        <option value="autosDelPlata" id="autosDelPlata">Autos del Plata S.A.</option>
+        <option value="detroit" id="detroit">Detroit S.A.</option>
+        <option value="gestionFinancieraLuxcar" id="gestionFinancieraLuxcar">Gestión Financiera Luxcar</option>
+        <option value="alizze" id="alizze">Alizze S.A.</option>
+      </select>
+      <br>
+      <p class="form-label">Nombre de Usuario</p>
+      <title>Usuario</title>
+      <input name="username" type="text" id="username" class="form-control form-control-sm" required autofocus>
+      <br>
+      <p class="form-label">Contraseña</p>
+      <title>Contraseña</title>
+      <input name="password" type="password" id="password" class="form-control form-control-sm" required>
+      <br><br/>
+      <button type="submit" >Iniciar Sesión</button>
+    </form>
+    </div>
+    {{#if success}}
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-md-4 mx-auto">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{success}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div> 
+      </div>
+    </div>
+    {{/if}}
+      {{#if message}}
+    <div class="container p-2">
+      <div class="row">
+        <div class="col-md-4 mx-auto">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{message}}
+            </div>
+        </div> 
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</div>
