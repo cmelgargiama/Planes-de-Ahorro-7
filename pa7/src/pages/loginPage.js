@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import fiat from "../fiat500.png";
 import {createHash} from 'crypto-js';
 import {Buffer} from 'buffer';
+import { getToken, setUserSession, removeUserSession } from '../utils/Common';
 
 import  {getUsers, postUsers}  from '../services/users.js';
 import axios from 'axios';
@@ -19,24 +20,24 @@ const [users, setUsers] = useState("");
 const [isSubmitting , setIsSubmitting] = useState(false);
 const [error, setError] = useState(null);
 const [userContext , setUserContext] = useContext(UserContext)
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState('')
     
-    /*const verifyPass = (user.pwdsalt) => {
-      
-     
-      const storedSaltBytes = new Buffer.from(pwdsalt, 'utf-8');
-      var sha256 = createHash("sha256");
-      sha256.update(storedSaltBytes, "utf8");
-      var result = sha256.digest("base64");
-      console.log(result)
-      return result
-  
-     };
-     if(verifyPass(pwdsalt) === user.password_hash){
+/*useEffect(()=>{
+  async function loadUser(){
+    if(!getToken()){
+      setLoading(false);
+      return;
+    }
     
-      console.log(user.password_hash)}else{
-        console.log(error)
-      }*/
+    try{const data:}
+    catch{}
+  }
+
+
+  loadUser();
+})    */
+
 
     const HandleChange = (event) =>{
         const name = event.target.name;
@@ -56,25 +57,28 @@ const [loading, setLoading] = useState(false)
     
     const genericErrorMessage = "Algo funciona mal! Intente nuevamente";
   
-    //axios.post('http://localhost:3001/',form)
-    fetch("http://localhost:3001/", {
+    axios.post('http://localhost:3001/',form)
+   /*fetch("http://localhost:3001/", {
 
             method: 'post',
 
             body: JSON.stringify(form),
+            withCredentials: true,
 
             headers: {
-
-                "Content-Type": "application/json"
+                              "Content-Type": "application/json"
 
             }
 
-        })
+        })*/
         .then(async response => {
+          //console.log(response.data)
           setLoading(false)
-          setUserSession(//response.data.token,
-             response.data.user)
-             props.history.push('/inicio')
+          setUserSession(response.data.message, response.data.token
+             )
+             console.log(response.data.token, response.data.message)
+             history.push('/inicio')
+             props.setUserLogin(true)
           if(!response.ok){
             if(response.status === 400){
               setError("Ingrese los campos correctamente.")
@@ -86,8 +90,10 @@ const [loading, setLoading] = useState(false)
           } else {
             setUserContext(oldValues => {
               return{...oldValues,token:data.token}
-            })
-          }
+              
+            }
+            )
+          setMessage(response.data.message)}
         })
     .catch(error => {
       setIsSubmitting(false)

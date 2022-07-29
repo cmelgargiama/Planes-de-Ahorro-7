@@ -60,7 +60,8 @@ router.post('/', async (req, res, next) => {
    
  
    
-     return    res.send(token)/*req.flash('success', 'Bienvenido ' + username)*/ 
+     return    res.json({message: "Bienvenido, " + User.Nombre,
+      token : token})/*req.flash('success', 'Bienvenido ' + username)*/ 
  
     }else{
    

@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {render} from "react-dom"
+
 import LoginPage from './pages/loginPage.js';
 import Sidenav from './components/sidenav';
 import InicioPage from './pages/inicioPage.js';
-import {BrowserRouter, Routes, Route, NavLink, Switch} from 'react-router-dom';
+import {BrowserRouter, Routes, Route,  NavLink, Switch} from 'react-router-dom';
 import Operaciones from './pages/operaciones';
 import MesaDePlanes from './pages/mesaDePlanes';
 import Mora from './pages/mora';
@@ -23,32 +23,60 @@ import Seguros from './pages/seguros';
 import HomePage from './pages/homePage';
 import PrivateRoute  from './utils/PrivateRoute'
 import PublicRoute  from './utils/PublicRoute'
+import { Container } from 'react-bootstrap';
+import { UserContext } from './context/UserContext';
+import { useState } from 'react';
+import GlobalState from './context/globalState.js'
 
 
-const App = () => {
+const App = (props) => {
+  const [userLogin, setUserLogin] = useState(false)
+
+
+
   return ( <div className="App">
-  <BrowserRouter>
+  
     <div>
-    
-      <div className="content">
-        <Routes>
-          <Route  path="/" element={<LoginPage/>} />
-          <Route path="/inicio" element={<InicioPage/>} />
-          <Route path="/home" element={<HomePage/>} />
-        </Routes>
+    <GlobalState>
+    <BrowserRouter>
+      <div className="content"  >
+      <InicioPage userLogin={userLogin} />      
+   <Routes>
+   <Route path="/" element={<LoginPage/>}/>  
+  <Route path="/home" element={<HomePage/>}/>
+  <Route path="/operaciones" element={<Operaciones/>}/>
+  <Route path="/mesadeplanes" element={<MesaDePlanes/>}/>
+  <Route path="/mora" element={<Mora/>}/>
+  <Route path="/callcenter" element={<CallCenter/>}/>
+  <Route path="/personal" element={<Personal/>}/>
+  <Route path="/emprendedores" element={<Emprendedores/>}/>
+  <Route path="/configuracion" element={<ConfigDatos/>}/>
+  <Route path="/contabilidad" element={<Contabilidad/>}/>
+  <Route path="/reportes" element={<Reportes/>}/>
+  <Route path="/plansubite" element={<PlanSubite/>}/>
+  <Route path="/entregas" element={<EntregasConvencionales/>}/>
+  <Route path="/compra" element={<CompraRescindidos/>}/>
+  <Route path="/usados" element={<Usados/>}/>
+  <Route path="/stockvehiculos" element={<StockVehiculos/>}/>
+  <Route path="/seguros" element={<Seguros/>}/>
+  </Routes>
+          
+        
+         
+        
+        
       </div>
+      </BrowserRouter>
+      </GlobalState>
+      
     </div>
-  </BrowserRouter>
+    
+ 
 </div>
   );
   
 };
 
-/*<div className="header">
-        <NavLink exact activeClassName="active" to="/">Home</NavLink>
-        <NavLink activeClassName="active" to="/login">Login</NavLink><small>(Access without token only)</small>
-        <NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink><small>(Access with token only)</small>
-      </div>*/
 
 export default App;
 

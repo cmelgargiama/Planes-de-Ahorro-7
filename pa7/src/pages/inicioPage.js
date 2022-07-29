@@ -17,38 +17,36 @@ import Usados from './usados';
 import StockVehiculos from './stockVehiculos';
 import Seguros from './seguros';
 import HomePage from './homePage';
+import { UserContext } from '../context/UserContext';
+import LoginPage from './loginPage';
 
 
 
-function InicioPage(){
+function InicioPage(props){
 
  
 
     return(
    
-   <BrowserRouter>
+   
+   
+      <UserContext.Provider>
+        {!props.userLogin &&
+        <LoginPage/> }
+              
+        {props.userLogin &&
+      <div>
     <Sidenav>
-    <Routes>
-   <Route path="/home" element={<HomePage/>}/>  
-  <Route path="/operaciones" element={<Operaciones/>}/>
-  <Route path="/mesadeplanes" element={<MesaDePlanes/>}/>
-  <Route path="/mora" element={<Mora/>}/>
-  <Route path="/callcenter" element={<CallCenter/>}/>
-  <Route path="/personal" element={<Personal/>}/>
-  <Route path="/emprendedores" element={<Emprendedores/>}/>
-  <Route path="/configuracion" element={<ConfigDatos/>}/>
-  <Route path="/contabilidad" element={<Contabilidad/>}/>
-  <Route path="/reportes" element={<Reportes/>}/>
-  <Route path="/plansubite" element={<PlanSubite/>}/>
-  <Route path="/entregas" element={<EntregasConvencionales/>}/>
-  <Route path="/compra" element={<CompraRescindidos/>}/>
-  <Route path="/usados" element={<Usados/>}/>
-  <Route path="/stockvehiculos" element={<StockVehiculos/>}/>
-  <Route path="/seguros" element={<Seguros/>}/>
-  </Routes>
+   <HomePage/>
+   
 
     </Sidenav>
-    </BrowserRouter>
+    </div>}
+    </UserContext.Provider>
+    
+
+
+   
    )
 
 
