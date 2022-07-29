@@ -13,6 +13,7 @@ const {database} = require("./config/dbConfig.js");
 const cors =  require('cors')
 const sequelize = require("./database")
 const exphbs = require('express-handlebars')
+const bodyParser = require("body-parser")
 //const nombre = require('../login_pa6/lib/passport.js');
 //const test = require('../login_pa6/lib/passport.js');
 //const text = require('../login_pa6/lib/passport.js')
@@ -21,6 +22,7 @@ const exphbs = require('express-handlebars')
 const webpackDev = require('webpack-dev-middleware');
 const config = require('./webpack.config')*/
 require("dotenv").config()
+
 
 
 
@@ -54,12 +56,18 @@ app.engine('.hbs', exphbs.engine({
 app.set('view engine', '.hbs');
 
 //Middlewares y Dependences
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(flash());
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cors({
+  origin:"http://localhost:3000",
+  credentials:true,
+}));
+app.use(express.urlencoded({ extended: true }));
+
+
 //app.use(webpackDev(webpack(config)));
 
 //static files
@@ -69,6 +77,7 @@ var sessionStore = new MySQLStore(database);
 //var sessionStore = new SequelizeStore(sequelize)
 app.use(session({
   secret: "loginsession",
+  cookie:{ secure: true },
   resave: 'false',
   saveUnitialized: false,
   store: sessionStore, 
@@ -78,6 +87,11 @@ app.use(session({
   
 }));
 
+
+app.use(cookieParser("loginsession"));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./lib/passport')(passport);
 /*SEQUELIZE DB SYNC */
 const db = require("./models");
 const Role = db.role;
@@ -98,20 +112,19 @@ app.use( (req,res, next) => {
   //res.locals.test = test;
   next();
 })
-
+/*
 //CORS OPTIONS
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", )
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000")
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers-Origin, Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
-});
+});*/
 
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 // Global Variables
 /*app.use((res,req,next)=>{

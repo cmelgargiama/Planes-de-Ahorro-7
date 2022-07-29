@@ -9,7 +9,7 @@ const { text } = require('express');
 const jwt = require('jsonwebtoken')
 const models = require( '../models/index');
 
-
+module.exports = function(passport){
 //const form = require('../../../pa7/src/pages/loginPage')
 
 passport.use('local-login', new LocalStrategy(
@@ -73,17 +73,6 @@ passport.use('local-login', new LocalStrategy(
              
     const pwdsalt = password + User.salt;
   
-    
-   /* const {create} = require('express-handlebars')
-    const hbs = create({
-        // Specify helpers which are only registered on this instance.
-        helpers: {
-            username() { return User.Nombre; },
-            roles() { return text; }
-        }
-    });
-    
-    module.exports = helpers*/
     const verifyPass = (pwdsalt) => {
      
      const storedSaltBytes = new Buffer.from(pwdsalt, 'utf-8');
@@ -98,11 +87,7 @@ passport.use('local-login', new LocalStrategy(
     
  if(verifyPass(pwdsalt) === User.password_hash){
     
-   //console.log(User.password_hash)
-    /*let payload = { id: User.id };
-    let token = jwt.sign(payload, jwtOptions.secretOrKey);
-    res.json({ msg: 'ok', token: token });*/
-    // generate token
+
  
    
      done(null ,User,   console.log("Bienvenido " + User.Nombre) /*req.flash('success', 'Bienvenido ' + username)*/ )
@@ -122,16 +107,17 @@ passport.use('local-login', new LocalStrategy(
 
 
 
-passport.serializeUser((User, done) =>{
+passport.serializeUser((User, browserCookie) =>{
   //  console.log(User.ID)
     
-     done(null, User.ID )
+     browserCookie(null, User.ID )
 
 });
 
-passport.deserializeUser(async ( ID, done) => {
+passport.deserializeUser(async ( ID, browserCookie) => {
     
         //const rows =  await models.user.findAll({where:{ ID: ID}});
         const rows = await pool.query('SELECT * FROM usuarios WHERE ID = ?',[ID])
-        done(null, rows[0] )
+        browserCookie(null, rows[0] )
 });
+}
