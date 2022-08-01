@@ -25,16 +25,19 @@ import PrivateRoute  from './utils/PrivateRoute'
 import PublicRoute  from './utils/PublicRoute'
 import { Container } from 'react-bootstrap';
 import { UserContext } from './context/UserContext';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import GlobalState from './context/globalState.js'
-
+import RequireAuth from './utils/RequireAuth';
+import Missing from "./pages/missing";
 
 const App = (props) => {
   const [userLogin, setUserLogin] = useState(false)
-
-
-
-  return ( <div className="App">
+  const context = useContext(UserContext)
+   ROLES = {
+    
+    rl_codigo: 1
+  }
+    return ( <div className="App">
   
     <div>
     <GlobalState>
@@ -44,6 +47,8 @@ const App = (props) => {
    <Routes>
    <Route path="/" element={<InicioPage/>}/>  
   <Route path="/home" element={<HomePage/>}/>
+
+  <Route element={<RequireAuth allowedRoles={[1]}/> }>
   <Route path="/operaciones" element={<Operaciones/>}/>
   <Route path="/mesadeplanes" element={<MesaDePlanes/>}/>
   <Route path="/mora" element={<Mora/>}/>
@@ -59,6 +64,9 @@ const App = (props) => {
   <Route path="/usados" element={<Usados/>}/>
   <Route path="/stockvehiculos" element={<StockVehiculos/>}/>
   <Route path="/seguros" element={<Seguros/>}/>
+  </Route>
+  {/*catch all*/}
+  <Route path="*" element={<Missing/>}  />
   </Routes>
           
         

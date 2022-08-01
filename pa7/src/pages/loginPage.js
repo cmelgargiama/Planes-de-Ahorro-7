@@ -8,10 +8,11 @@ import fiat from "../fiat500.png";
 import {createHash} from 'crypto-js';
 import {Buffer} from 'buffer';
 import { getToken, setUserSession, removeUserSession } from '../utils/Common';
-
+import useAuth from '../hooks/useAuth'
 import  {getUsers, postUsers}  from '../services/users.js';
 import axios from 'axios';
 import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
+import { useNavigate, useLocation,  } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -19,11 +20,17 @@ const [form,setForm]= useState("");
 const [users, setUsers] = useState("");
 const [isSubmitting , setIsSubmitting] = useState(false);
 const [error, setError] = useState(null);
-const context = useContext(UserContext)
+const context = useContext(UserContext);
 const [loading, setLoading] = useState(false);
-const [message, setMessage] = useState('')
-const [roles,  setRoles] = useState('')
-    
+const [message, setMessage] = useState('');
+const [roles,  setRoles] = useState([{}]);
+const {setAuth} = useAuth();
+const navigate = useNavigate();
+const location = useLocation();
+const from = location.state?.from?.pathname || "/";
+
+
+
 /*useEffect(()=>{
   async function loadUser(){
     if(!getToken()){
@@ -59,34 +66,22 @@ const [roles,  setRoles] = useState('')
     const genericErrorMessage = "Algo funciona mal! Intente nuevamente";
   
     axios.post('http://localhost:3001/',form)
-   /*fetch("http://localhost:3001/", {
-
-            method: 'post',
-
-            body: JSON.stringify(form),
-            withCredentials: true,
-
-            headers: {
-                              "Content-Type": "application/json"
-
-            }
-
-        })*/
-        .then(async response => {
+           .then(async response => {
           //console.log(response.data)
           setLoading(false)
           setUserSession(response.data.message, response.data.token, response.data.roles
              )
-             console.log(response.data)
+             console.log(response.data, response.data.rl_codigo)
              
              
              //history.push('/home')
           //if(!response.ok){
            
-            
-              setRoles(response.data.roles)
-              context.loginUser({roles:response.data.roles, login:response.data.Nombre})
-            
+              const roles = response.data.rl_codigo[0].rl_codigo;
+              setRoles(roles);
+              console.log(roles)
+              context.loginUser({roles:response.data.roles, login:response.data.Nombre, rl_codigo:roles})
+              navigate(from, {replace:true})
           /*} else {
             setUserContext(oldValues => {
               return{...oldValues,token:data.token}

@@ -67,7 +67,8 @@ router.post('/', async (req, res, next) => {
     //sconsole.log(roles[0].rl_descripcion)
    var i;
    var text = '';
-   var rl_codigo =''
+   var rl_codigo = '';
+   
    const rolesLength = userRoles.length
    for ( i = 0;  i< rolesLength ; i++){
        //console.log([i])
@@ -77,15 +78,20 @@ router.post('/', async (req, res, next) => {
        //text += roles[0].rl_descripcion + ', '
    if (i<rolesLength-1){
        text += roles.rl_descripcion + ', '
-       rl_codigo += roles.rl_codigo + ', '
+       rl_codigo += roles.rl_codigo + ' '
    }else{
        text += roles.rl_descripcion + '. '
-       rl_codigo += roles.rl_codigo + '.' 
+       rl_codigo += roles.rl_codigo + ' '  
    }}
    console.log(text)
+   //console.log(rl_codigo)
+
+   
+   const roleCode = await pool.query('SELECT roles.rl_codigo FROM usuarios_has_roles LEFT JOIN roles ON usuarios_has_roles.rl_codigo = roles.rl_codigo WHERE usuarios_has_roles.us_login = ? AND usuarios_has_roles.uhr_activo=1',
+   [User.login])
    
      return    res.json({message: "Bienvenido, " + User.Nombre,
-      token : token, roles : text , Nombre: User.Nombre, rl_codigo:rl_codigo})/*req.flash('success', 'Bienvenido ' + username)*/ 
+      token : token, roles : text , Nombre: User.Nombre, rl_codigo:roleCode})/*req.flash('success', 'Bienvenido ' + username)*/ 
  
     }else{
    

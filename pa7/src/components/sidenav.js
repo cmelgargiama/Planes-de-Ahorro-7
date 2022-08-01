@@ -1,16 +1,25 @@
-import React,  {useState} from 'react'
+import React,  {useState, useContext} from 'react'
 import { BiAlignMiddle,
     BiBus,BiListPlus, BiFile, BiTimeFive, BiPhoneCall,
      BiIdCard, BiGroup, BiCog, BiLineChart, BiPrinter,
       BiTachometer, BiLinkExternal, BiCart, BiCar, BiLock, BiMenu
  } from "react-icons/bi";
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 
 const Sidenav = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
-    const menuItem=[
+    const context = useContext(UserContext);
+    const [roles,setRoles] = useState("")
+  
+   
+   
+
+    const masterItem=[
+        
+
         {
             path:'/operaciones',
             name:"Operaciones",
@@ -89,9 +98,19 @@ const Sidenav = ({children}) => {
             path:'/seguros',
             name:"Seguros",
             icon: <BiLock/>,
-            
+          
         },
 
+
+    ]
+
+    const operacionesItem=[
+        {
+            path:'/operaciones',
+            name:"Operaciones",
+            icon: <BiListPlus/>,
+            
+        },
 
     ]
 
@@ -105,13 +124,25 @@ const Sidenav = ({children}) => {
                 </div>
             </div>
             <div className='scrollbar' id="style-1">
-            {
-                menuItem.map((item, index)=>(
+            {roles = 2  &&
+                <div>
+                  {  masterItem.map((item, index)=>(
                     <NavLink to={item.path} key={index} className="link" activeclassName="active">
                         <div className="icon">{item.icon}</div>
                         <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
                     </NavLink>
-                ))
+                ))}
+                </div>
+            }
+            {roles = 1  &&
+            <div>
+            {operacionesItem.map((item, index)=>(
+                <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                    <div className="icon">{item.icon}</div>
+                    <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                </NavLink>
+            ))}
+            </div>
             }
             </div>
         </div>
