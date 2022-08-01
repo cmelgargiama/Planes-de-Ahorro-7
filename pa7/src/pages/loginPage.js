@@ -14,14 +14,15 @@ import axios from 'axios';
 import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 
 
-function LoginPage(props) {
+function LoginPage() {
 const [form,setForm]= useState("");
 const [users, setUsers] = useState("");
 const [isSubmitting , setIsSubmitting] = useState(false);
 const [error, setError] = useState(null);
-const [userContext , setUserContext] = useContext(UserContext)
+const context = useContext(UserContext)
 const [loading, setLoading] = useState(false);
 const [message, setMessage] = useState('')
+const [roles,  setRoles] = useState('')
     
 /*useEffect(()=>{
   async function loadUser(){
@@ -74,30 +75,35 @@ const [message, setMessage] = useState('')
         .then(async response => {
           //console.log(response.data)
           setLoading(false)
-          setUserSession(response.data.message, response.data.token
+          setUserSession(response.data.message, response.data.token, response.data.roles
              )
-             console.log(response.data.token, response.data.message)
-             history.push('/inicio')
-             props.setUserLogin(true)
-          if(!response.ok){
-            if(response.status === 400){
-              setError("Ingrese los campos correctamente.")
-            }else if(response.status===401){
-              setError("El usuario y la contraseña no son correctos.")
-            } else {
-              setError(genericErrorMessage)
-            }
-          } else {
+             console.log(response.data)
+             
+             
+             //history.push('/home')
+          //if(!response.ok){
+           
+            
+              setRoles(response.data.roles)
+              context.loginUser({roles:response.data.roles, login:response.data.Nombre})
+            
+          /*} else {
             setUserContext(oldValues => {
               return{...oldValues,token:data.token}
               
             }
             )
-          setMessage(response.data.message)}
+          setMessage(response.data.message)}*/
+         
         })
     .catch(error => {
+      if(error.response.status === 400){
+        setError(error.response.data.message)
+         }else if(error.response.status===401){
+        setError(error.response.data.message)}
       setIsSubmitting(false)
       setError(genericErrorMessage)
+      console.log(error)
     })
     }  ;  
 

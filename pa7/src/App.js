@@ -40,9 +40,9 @@ const App = (props) => {
     <GlobalState>
     <BrowserRouter>
       <div className="content"  >
-      <InicioPage userLogin={userLogin} />      
+           
    <Routes>
-   <Route path="/" element={<LoginPage/>}/>  
+   <Route path="/" element={<InicioPage/>}/>  
   <Route path="/home" element={<HomePage/>}/>
   <Route path="/operaciones" element={<Operaciones/>}/>
   <Route path="/mesadeplanes" element={<MesaDePlanes/>}/>

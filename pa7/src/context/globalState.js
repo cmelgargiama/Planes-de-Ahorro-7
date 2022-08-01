@@ -3,16 +3,20 @@ import { UserContext } from "./UserContext";
 
 function GlobalState(props){
     const[userLogin, setUserLogin] = useState(false)
-     const loginUser =() =>{
-        setLoginUser(true)
+    const [userInfo, setUserInfo] = useState({})
+     const loginUser =(user) =>{
+        setUserLogin(true)
+        setUserInfo(user)
     }
     const logoutUser =() =>{
         setUserLogin(false)
+        setUserInfo({})
     }
 
     return(
         <UserContext.Provider value={{
             userLogin:userLogin,
+            userInfo:userInfo,
             loginUser:loginUser,
             logoutUser:logoutUser, 
         }}>

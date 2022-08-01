@@ -16,22 +16,24 @@ import CompraRescindidos from './compraRescindidos';
 import Usados from './usados';
 import StockVehiculos from './stockVehiculos';
 import Seguros from './seguros';
+import { UserContext } from '../context/UserContext';
 
 
 
-function HomePage(){
+function HomePage(props){
 
  
 
-    return(<div className="iniciopage">
+    return( <UserContext.Consumer>
+        {context=><div className="iniciopage">
 
 <div className="inicio_body">
-<h3>Bienvenido,  a PA7!!!</h3>
-<p>Sus roles son: </p>
+<h3>Bienvenido, {context.userInfo.login} a PA7!!!</h3>
+<p>Sus roles son: {context.userInfo.roles}</p>
 
 </div>
 </div>    
-
+}</UserContext.Consumer>
 )
 
 

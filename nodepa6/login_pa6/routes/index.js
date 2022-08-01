@@ -6,6 +6,7 @@ const {createHash} = require("crypto");
 var cors = require('cors')
 var app = express();
 const utils = require("../utils/utils")
+const pool = require('../bin/mysql.js');
 
 
 
@@ -31,7 +32,10 @@ router.post('/', async (req, res, next) => {
   console.log("Error: ", err);})
 
   if(!User){
-    return res.json({message:"El usuario no existe"})
+    return res.status(400).json({
+      error:true,
+      message:"Usuario Incorrecto"
+    })
   }
 
 
@@ -57,15 +61,38 @@ router.post('/', async (req, res, next) => {
   // return the token along with user details
    console.log(token, userObj)
 
-   
- 
+   const userRoles = await pool.query('SELECT roles.rl_codigo, roles.rl_descripcion FROM usuarios_has_roles LEFT JOIN roles ON usuarios_has_roles.rl_codigo = roles.rl_codigo WHERE usuarios_has_roles.us_login = ? AND usuarios_has_roles.uhr_activo=1',
+   [User.login])
+   //const roles = await pool.query('SELECT rl_descripcion FROM roles WHERE rl_codigo = ? ', [usRol.rl_codigo])
+    //sconsole.log(roles[0].rl_descripcion)
+   var i;
+   var text = '';
+   var rl_codigo =''
+   const rolesLength = userRoles.length
+   for ( i = 0;  i< rolesLength ; i++){
+       //console.log([i])
+       const roles = userRoles[i]
+      // console.log(roles)
+      
+       //text += roles[0].rl_descripcion + ', '
+   if (i<rolesLength-1){
+       text += roles.rl_descripcion + ', '
+       rl_codigo += roles.rl_codigo + ', '
+   }else{
+       text += roles.rl_descripcion + '. '
+       rl_codigo += roles.rl_codigo + '.' 
+   }}
+   console.log(text)
    
      return    res.json({message: "Bienvenido, " + User.Nombre,
-      token : token})/*req.flash('success', 'Bienvenido ' + username)*/ 
+      token : token, roles : text , Nombre: User.Nombre, rl_codigo:rl_codigo})/*req.flash('success', 'Bienvenido ' + username)*/ 
  
     }else{
    
-    return res.json({message:"Contraseña Incorrecta"} ) /*req.flash('message','Contraseña Incorrecta')*/ }
+    return res.status(401).json({
+      error:true,
+      message:"Password Incorrecta"
+    }) /*req.flash('message','Contraseña Incorrecta')*/ }
             
     
 

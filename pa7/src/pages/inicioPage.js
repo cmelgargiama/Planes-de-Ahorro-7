@@ -30,11 +30,13 @@ function InicioPage(props){
    
    
    
-      <UserContext.Provider>
-        {!props.userLogin &&
+      <UserContext.Consumer>
+        {context=>
+        <div>
+        {!context.userLogin &&
         <LoginPage/> }
               
-        {props.userLogin &&
+        {context.userLogin &&
       <div>
     <Sidenav>
    <HomePage/>
@@ -42,7 +44,9 @@ function InicioPage(props){
 
     </Sidenav>
     </div>}
-    </UserContext.Provider>
+    </div>
+        }
+    </UserContext.Consumer>
     
 
 

@@ -6,6 +6,7 @@ import { useMatch } from 'react-router-dom';
 import { getSeguros } from '../services/seguros';
 import {useTable} from 'react-table'
 import tw from 'twin.macro'
+import Sidenav from '../components/sidenav';
 
 /*const Table = tw.table`
 table-fixed
@@ -79,7 +80,8 @@ useEffect( ()=>{
 
 
 /*DATATABLE*/
-    return(<div class="seguros-body">
+    return(<Sidenav>
+    <div class="seguros-body">
          <div class="seguros-title">
         <h3>Gestión de Seguros</h3>
     </div>
@@ -131,7 +133,8 @@ useEffect( ()=>{
                 <button className="right">Salir</button>
             </div>
 
-            </div>)
+            </div>
+            </Sidenav>)
         
 }
 
