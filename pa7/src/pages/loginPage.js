@@ -31,6 +31,7 @@ const from = location.state?.from?.pathname || "/";
 
 
 
+
 /*useEffect(()=>{
   async function loadUser(){
     if(!getToken()){
@@ -76,10 +77,13 @@ const from = location.state?.from?.pathname || "/";
              
              //history.push('/home')
           //if(!response.ok){
-           
-              const roles = response.data.rl_codigo[0].rl_codigo;
+              
+              const roles = response?.data?.rl_codigo[0].rl_codigo;
               setRoles(roles);
               console.log(roles)
+              const user = response?.data?.Nombre;
+              const accessToken = response.data.token;             
+              context.setAuth({roles, user, accessToken})
               context.loginUser({roles:response.data.roles, login:response.data.Nombre, rl_codigo:roles})
               navigate(from, {replace:true})
           /*} else {

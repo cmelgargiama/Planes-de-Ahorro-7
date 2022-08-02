@@ -26,10 +26,7 @@ function InicioPage(props){
 
  
 
-    return(
-   
-   
-   
+    return(   
       <UserContext.Consumer>
         {context=>
         <div>

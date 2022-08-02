@@ -78,10 +78,10 @@ router.post('/', async (req, res, next) => {
        //text += roles[0].rl_descripcion + ', '
    if (i<rolesLength-1){
        text += roles.rl_descripcion + ', '
-       rl_codigo += roles.rl_codigo + ' '
+       rl_codigo += parseInt(roles.rl_codigo) + ' '
    }else{
        text += roles.rl_descripcion + '. '
-       rl_codigo += roles.rl_codigo + ' '  
+       rl_codigo += parseInt(roles.rl_codigo) + ' '  
    }}
    console.log(text)
    //console.log(rl_codigo)
