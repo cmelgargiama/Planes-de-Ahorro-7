@@ -113,16 +113,16 @@ const from = location.state?.from?.pathname || "/";
             return(
                             
                 <div>
-            <div class="title">
+            <div className="title">
             <h1>PA7</h1>
             <br/>
             <p>Bienvenido a PA7</p>
             <br/>
           </div>
-         <div class="body">
+         <div className="body">
           <img src={fiat} />
             <br/>
-            <div class="form">
+            <div className="form">
             <Form onSubmit={handleSubmit} >
               
               <Form.Group className="mb-3" controlId="formGroupEmail">

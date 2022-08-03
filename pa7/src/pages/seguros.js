@@ -1,11 +1,9 @@
-
-
-
+import Button from 'react-bootstrap/Button';
 import React, {Component, useEffect, useMemo, useState} from 'react';
 import { useMatch } from 'react-router-dom';
 import { getSeguros } from '../services/seguros';
-import {useTable} from 'react-table'
-import tw from 'twin.macro'
+import {useTable} from 'react-table';
+import tw from 'twin.macro';
 import Sidenav from '../components/sidenav';
 
 /*const Table = tw.table`
@@ -126,11 +124,11 @@ useEffect( ()=>{
             <br/>
             <div className="d-flex flex-row">
             
-                <button className="left">Nueva</button>
-                <button className="left">Modificar</button>
+            <Button variant="light" className="left">Nueva</Button>
+            <Button variant="light" className="left">Modificar</Button>
                 <br/>
-                <button className="right">Excel</button>
-                <button className="right">Salir</button>
+            <Button variant="light" className="right">Excel</Button>
+            <Button variant="light" className="right">Salir</Button>
             </div>
 
             </div>

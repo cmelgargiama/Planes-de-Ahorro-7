@@ -21,6 +21,7 @@ import Usados from './pages/usados';
 import StockVehiculos from './pages/stockVehiculos';
 import Seguros from './pages/seguros';
 import HomePage from './pages/homePage';
+import Scoring from './pages/operaciones/scoring';
 import PrivateRoute from './utils/PrivateRoute'
 import PublicRoute from './utils/PublicRoute'
 import { Container } from 'react-bootstrap';
@@ -46,28 +47,8 @@ const App = (props) => {
               <Route path="/home" element={<HomePage />} />
 
               <Route element={<RequireAuth allowedRoles={[2]} />}>
-                <Route path="/operaciones-" element={<Operaciones />}>
-                  <Route path="AltaPre-Solicitudes"  />
-                  <Route path="ActualizacionPre-Solicitudes"  />
-                  <Route path="ActualizacionOperaciones"  />
-                  <Route path="AltadeCartera"  />
-                  <Route path="Agrup-adj-pedidos-entregas"  />
-                  <Route path="Scoring"  />
-                  <Route path="ConciliacionTarjetas"  />
-                  <Route path="ReportePersonalizadoOp"  />
-                  <Route path="ExcelDatosOperaciones"  />
-                  <Route path="BuscarOpPreSolDNI"  />
-                  <Route path="Importaciones"  />
-                  <Route path="ControlSolicitudes"  />
-                  <Route path="ControlRecibos"  />
-                  <Route path="ControlTransferencias"  />
-                  <Route path="ImpresionRecibosX"  />
-                  <Route path="Reclamos"  />
-                  <Route path="Licitaciones"  />
-                  <Route path="LlamadosPorOperacion"  />
-                  <Route path="Reintegros"  />
-                  <Route path="RepMicroEmprendedores"  />
-                  <Route path="Reportes"  />
+                <Route exact path="/operaciones/" element={<Operaciones />}>
+                 
                 </Route>
 
                 <Route path="/mesadeplanes-" element={<MesaDePlanes />}>
