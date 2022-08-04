@@ -13,6 +13,7 @@ import  {getUsers, postUsers}  from '../services/users.js';
 import axios from 'axios';
 import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 import { useNavigate, useLocation,  } from 'react-router-dom';
+import  Alert  from 'react-bootstrap/Alert';
 
 
 function LoginPage() {
@@ -78,13 +79,18 @@ const from = location.state?.from?.pathname || "/";
              //history.push('/home')
           //if(!response.ok){
               
-              const roles = response?.data?.rl_codigo[0].rl_codigo;
+              //const roles = response?.data?.rl_codigo[0].rl_codigo;
+              const roles = response.data.rl_codigo.map(({rl_codigo}) => rl_codigo);
               setRoles(roles);
-              console.log(roles)
+              const rl = [...roles ]
+              console.log(roles);
+              
               const user = response?.data?.Nombre;
               const accessToken = response.data.token;             
               context.setAuth({roles, user, accessToken})
-              context.loginUser({roles:response.data.roles, login:response.data.Nombre, rl_codigo:roles})
+              context.loginUser({roles:response.data.roles, login:response.data.Nombre, 
+                rl_codigo:[...rl] 
+                , empresa:form.empresa })
               navigate(from, {replace:true})
           /*} else {
             setUserContext(oldValues => {
@@ -98,10 +104,10 @@ const from = location.state?.from?.pathname || "/";
     .catch(error => {
       if(error.response.status === 400){
         setError(error.response.data.message)
-         }else if(error.response.status===401){
+         }else if(error.response.status === 401){
         setError(error.response.data.message)}
       setIsSubmitting(false)
-      setError(genericErrorMessage)
+      //setError(genericErrorMessage)
       console.log(error)
     })
     }  ;  
@@ -112,14 +118,14 @@ const from = location.state?.from?.pathname || "/";
         
             return(
                             
-                <div>
+                <div className='containerLogin'>
             <div className="title">
-            <h1>PA7</h1>
+            <h1>Planes de Ahorro 7</h1>
             <br/>
             <p>Bienvenido a PA7</p>
             <br/>
           </div>
-         <div className="body">
+         <div className="bodyLogin">
           <img src={fiat} />
             <br/>
             <div className="form">
@@ -128,14 +134,14 @@ const from = location.state?.from?.pathname || "/";
               <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Empresa</Form.Label>
               <Form.Select onChange={HandleChange} name="empresa" id="selectEmpresas" value={form.empresa} required>
-                <option id="empty">--Elegir empresa--</option>
-                <option value="carGroup" id="carGroup">Car Group S.A.</option>
-                <option value="gestionFinanciera" id="gestionFinanciera">Gestion Financiera S.A.</option>
-                <option value="autoNet" id="autoNet">AutoNet S.A</option>
-                <option value="autosDelPlata" id="autosDelPlata">Autos del Plata S.A.</option>
-                <option value="detroit" id="detroit">Detroit S.A.</option>
-                <option value="gestionFinancieraLuxcar" id="gestionFinancieraLuxcar">Gestión Financiera Luxcar</option>
-                <option value="alizze" id="alizze">Alizze S.A.</option>
+                <option value="">--Elegir empresa--</option>
+                <option value="Car Group S.A." id="carGroup">Car Group S.A.</option>
+                <option value="Gestion Financiera S.A." id="gestionFinanciera">Gestion Financiera S.A.</option>
+                <option value="Auto Net S.A." id="autoNet">AutoNet S.A</option>
+                <option value="Autos del Plata S.A." id="autosDelPlata">Autos del Plata S.A.</option>
+                <option value="Detroit S.A." id="detroit">Detroit S.A.</option>
+                <option value="Gestion Financiera Luxcar" id="gestionFinancieraLuxcar">Gestión Financiera Luxcar</option>
+                <option value="Alizze S.A." id="alizze">Alizze S.A.</option>
               </Form.Select>
               </Form.Group>
               
@@ -155,7 +161,11 @@ const from = location.state?.from?.pathname || "/";
               </Form>
             </div>
           </div>
+            {error &&
             
+            <Alert style={{margin: "10px 10px"}}  variant="danger">Error al ingresar! {error}</Alert>
+            
+            }
           </div>
          
 

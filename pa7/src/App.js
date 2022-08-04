@@ -21,7 +21,7 @@ import Usados from './pages/usados';
 import StockVehiculos from './pages/stockVehiculos';
 import Seguros from './pages/seguros';
 import HomePage from './pages/homePage';
-import Scoring from './pages/operaciones/scoring';
+import Scoring from './pages/operaciones/scoring.js';
 import PrivateRoute from './utils/PrivateRoute'
 import PublicRoute from './utils/PublicRoute'
 import { Container } from 'react-bootstrap';
@@ -48,20 +48,14 @@ const App = (props) => {
 
               <Route element={<RequireAuth allowedRoles={[2]} />}>
                 <Route exact path="/operaciones/" element={<Operaciones />}>
-                 
+                  <Route path="*" element={<Missing />} />
                 </Route>
 
-                <Route path="/mesadeplanes-" element={<MesaDePlanes />}>
-                  <Route path="MesadePlanes"  />
-                  <Route path="Scoring"  />
-                  <Route path="StockParaVentas"  />
-                  <Route path="AutorizadorClasificaciones"  />
-                  <Route path="StockContable"  />
-                  <Route path="GestiondeSenasAcumuladas"  />
-                  <Route path="HaberesNetos"  />
+                <Route path="/mesadeplanes/" element={<MesaDePlanes />}>
+                <Route path="*" element={<Missing />} />
                   </Route >
 
-                  <Route path="mora-" element={<Mora />}>
+                  <Route path="/mora/" element={<Mora />}>
                     <Route path="CuotasEncuadre"  />
                     <Route path="RecuperoCuotasEncuadre"  />
                     <Route path="ReportePagosyRecuperosEncuadre"  />
@@ -74,7 +68,7 @@ const App = (props) => {
                     <Route path="ColadeLlamadosdeMoraEspecializada"  />
                   </Route>
 
-                  <Route path="callcenter-" element={<CallCenter />}>
+                  <Route path="/callcenter/" element={<CallCenter />}>
                     <Route path="DefinicionCampanaMails"  />
                     <Route path="DefinicionCampanaSMS"  />
                     <Route path="GeneracionBasesNeotel"  />
@@ -85,18 +79,18 @@ const App = (props) => {
                     <Route path="AdministracionSMSEnviadosyRecibidos"  />
                   </Route>
 
-                    <Route path="/personal-" element={<Personal />}>
+                    <Route path="/personal/" element={<Personal />}>
                       <Route path="Legajos"  />
                       <Route path="Reportes"  />
                       <Route path="ImportaciondeSueldos"  />
                       <Route path="GeneracionTXTAcreditacionHaberes"  />
                     </Route>
 
-                    <Route path="/emprendedores-" element={<Emprendedores />}>
+                    <Route path="/emprendedores/" element={<Emprendedores />}>
                         <Route path="Circulares"  />
                      </Route>
 
-                    <Route path="/configuracion-" element={<ConfigDatos />}>
+                    <Route path="/configuracion/" element={<ConfigDatos />}>
                           <Route path="Vendedores"  />
                           <Route path="TeamLeader"  />
                           <Route path="Supervisores"  />
@@ -120,7 +114,7 @@ const App = (props) => {
                           <Route path="EntregaAsegurada"  />
                     </Route>
 
-                    <Route path="/contabilidad-" element={<Contabilidad />}>
+                    <Route path="/contabilidad/" element={<Contabilidad />}>
                             <Route path="Tesoreria" />
                             <Route path="Ventas" />
                             <Route path="Bancos" />
@@ -134,7 +128,7 @@ const App = (props) => {
 
                     <Route path="/reportes" element={<Reportes />} />
                     
-                    <Route path="/plansubite-" element={<PlanSubite />}>
+                    <Route path="/plansubite/" element={<PlanSubite />}>
                               <Route path="Oficiales" />
                               <Route path="ReportedeCompras" />
                               <Route path="ImportaciondeDatos" />
@@ -145,13 +139,13 @@ const App = (props) => {
                               <Route path="ImportaciondeHN" />
                     </Route>
 
-                    <Route path="/entregas-" element={<EntregasConvencionales />}>
+                    <Route path="/entregas/" element={<EntregasConvencionales />}>
                                 <Route path="AltayModificaciondeConvencionales" />
                                 <Route path="Turnos" />
                                 <Route path="SeguimientoService" />
                     </Route>
 
-                    <Route path="/compra-" element={<CompraRescindidos />}>
+                    <Route path="/compra/" element={<CompraRescindidos />}>
                                   <Route path="Oficiales" />
                                   <Route path="EstadodelaGestion" />
                                   <Route path="GestiondeDatos" />
@@ -159,7 +153,7 @@ const App = (props) => {
                                   <Route path="ImportaciondeDatos" />
                     </Route>
                     
-                    <Route path="/usados-" element={<Usados />}>
+                    <Route path="/usados/" element={<Usados />}>
                                     <Route path="Cotizaciones" />
                                     <Route path="CotizacionesGenerales" />
                                     <Route path="UnidadesAprobadasPlandeAhorroaRecibir" />

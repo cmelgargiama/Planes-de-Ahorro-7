@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
   if(!User){
     return res.status(400).json({
       error:true,
-      message:"Usuario Incorrecto"
+      message:"El Usuario No Existe"
     })
   }
 
@@ -91,13 +91,13 @@ router.post('/', async (req, res, next) => {
    [User.login])
    
      return    res.json({message: "Bienvenido, " + User.Nombre,
-      token : token, roles : text , Nombre: User.Nombre, rl_codigo:roleCode})/*req.flash('success', 'Bienvenido ' + username)*/ 
+      token : token, roles : text , Nombre: User.Nombre, rl_codigo:roleCode ,})/*req.flash('success', 'Bienvenido ' + username)*/ 
  
     }else{
    
     return res.status(401).json({
       error:true,
-      message:"Password Incorrecta"
+      message:"Contraseña Incorrecta"
     }) /*req.flash('message','Contraseña Incorrecta')*/ }
             
     
