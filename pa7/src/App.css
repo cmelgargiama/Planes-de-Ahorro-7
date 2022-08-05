@@ -100,21 +100,21 @@ main{
 }
 .link{
    text-decoration:none;
-    display: flex;
+    display: block;
     color: rgb(234, 234, 234);
     padding: 10px 15px;
     gap: 15px;
     transition: all 0.5s;
 }
 .link:hover{
-  border-left: solid 10px #fff;
+  border-left: solid 5px #fff;
    cursor: pointer;
-  color: #fff;
+  color: #000;
     transition: all 0.1s;
 }
 .active{
   
-    background: rgb(255, 255, 255);
+    background: rgb(102, 102, 102);
     color: #000;
 }
 .link.disabled{
@@ -133,6 +133,146 @@ main{
   font-size: 12px;
 }
 
+.ul {
+  display: none;
+}
+
+
+
+ .op-show.show{
+  list-style:none;
+  text-decoration: none;
+  display:block;
+  margin-left: -30px;}
+.op-show.show a{
+  color:#fff;
+  text-decoration: none;}
+.op-show.show a:hover{
+  color:#000;
+  background: #fff ;
+}
+
+ .mp-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+
+.mp-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+ .mora-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+
+.mora-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.call-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.call-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.per-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.per-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.empre-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.empre-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.config-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.config-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.cont-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.cont-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.rep-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.rep-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.plan-s-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.plan-s-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.entr-conv-show.show{
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.entr-conv-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.compra-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.compra-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
+.usados-show.show{
+  text-decoration: none;
+  list-style:none;
+  display:block;
+  margin-left: -30px;
+}
+.usados-show.show a{
+  color:#fff;
+  text-decoration: none;}
+
 /*SUBMENU*/
 
 .submenu{
@@ -145,16 +285,16 @@ main{
   display: block;
 }
 
-.svg{
+.toggle{
   position: relative;
   left: 15px;
-  margin-top: -37px;
+  margin-top: 0px;
   color: rgb(154, 136, 136);
   
   font-size: 22px;
   
 }
-.svg:hover{
+.toggle:hover{
 
   color: rgb(255, 255, 255);
     cursor:pointer;
@@ -263,28 +403,36 @@ background-color: #ecebeb;
 }
 /* Scrollbar End */ 
 
-
+/*PERFIL INFERIOR*/
 .profile{
   position: fixed;
-  height: 60px;
+  height: 65px;
   
   left: 0;
-  bottom: -8px;
-  padding: 10px 14px;
+  bottom: -6px;
+  padding: 8px 12px;
   background: #1d1b31;
   transition: all 0.5s linear;
   overflow: hidden;
 }
+.profile-details .empresa{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
 
-.profile-details .name,
-  .profile-details .job{
-    font-size: 15px;
+.profile-details .name
+  {
+    font-size: 12px;
     font-weight: 400;
     color: #fff;
     white-space: nowrap;
   }
   .profile-details .job{
     font-size: 10px;
+    height: 20px;
+
   }
    #log_out{
     position: relative;

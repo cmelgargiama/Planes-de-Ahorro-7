@@ -14,7 +14,7 @@ function HomePage(props){
 <h1><b>{context.userInfo.empresa}</b></h1>
 <h3>Bienvenido, {context.userInfo.login} a PA7!!!</h3>
 <p>Sus roles son: {context.userInfo.roles}</p>
-<p>Codigos de rol: {context.userInfo.rl_codigo}</p>
+<p>Codigos de rol: {context.userInfo.rl_codigo.slice(0)}</p>
 
 </div>
 </div>    

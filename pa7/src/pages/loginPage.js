@@ -79,18 +79,25 @@ const from = location.state?.from?.pathname || "/";
              //history.push('/home')
           //if(!response.ok){
               
-              //const roles = response?.data?.rl_codigo[0].rl_codigo;
+              //const roles = response?.data?.rl_codigo;
               const roles = response.data.rl_codigo.map(({rl_codigo}) => rl_codigo);
               setRoles(roles);
-              const rl = [...roles ]
+              //const rl = [...roles.map(({})=> length) ]
+              var i ;
+              var roleText = "";
               console.log(roles);
+              /*for(i=0 ; i<roles.length ; i++){
+                roleText += "rl_codigo" + (i + 1) + ":" + roles[i] + "\n" 
+
+              }*/
               
+              console.log(roleText)
+              //loginRoles(json.stringify(roleText))
               const user = response?.data?.Nombre;
               const accessToken = response.data.token;             
               context.setAuth({roles, user, accessToken})
               context.loginUser({roles:response.data.roles, login:response.data.Nombre, 
-                rl_codigo:[...rl] 
-                , empresa:form.empresa })
+               rl_codigo:[...roles] ,  empresa:form.empresa })
               navigate(from, {replace:true})
           /*} else {
             setUserContext(oldValues => {
