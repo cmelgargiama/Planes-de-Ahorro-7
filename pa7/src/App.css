@@ -100,27 +100,36 @@ main{
 }
 .link{
    text-decoration:none;
-    display: block;
-    color: rgb(234, 234, 234);
-    padding: 10px 15px;
-    gap: 15px;
+    display: flex;
+    color: rgb(222, 222, 222);
+    padding: 10px 10px;
+    gap: 10px;
     transition: all 0.5s;
 }
 .link:hover{
   border-left: solid 5px #fff;
    cursor: pointer;
-  color: #000;
+  color: rgb(255, 255, 255);
     transition: all 0.1s;
 }
-.active{
-  
+/*.active{
+    
     background: rgb(102, 102, 102);
-    color: #000;
-}
+    color: rgb(140, 140, 140);
+}*/
 .link.disabled{
   background: #000;
   color: rgb(99, 99, 99)
 } 
+.disabled{
+  background: #000;
+  color: rgb(99, 99, 99)
+} 
+
+.access{
+  color :rgb(222, 222, 222)
+
+}
 
 .icon{
   font-size: 15px;
@@ -145,7 +154,7 @@ main{
   display:block;
   margin-left: -30px;}
 .op-show.show a{
-  color:#fff;
+  
   text-decoration: none;}
 .op-show.show a:hover{
   color:#000;

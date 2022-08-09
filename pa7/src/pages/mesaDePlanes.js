@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidenav from '../components/sidenav';
 import {  Route , Routes} from 'react-router-dom';
 import MesaDePlanesPage from './mesaDePlanes/mesaDePlanes.js'
 import HaberesNetos from './mesaDePlanes/haberesNetos.js'

@@ -17,7 +17,7 @@ import Importaciones from './operaciones/importaciones';
 import ControlSolicitudes from './operaciones/controlSolicitudes';
 import ControlTransferencias from './operaciones/controlTransferencias';
 import ReportePersonalizadoOp from './operaciones/reportePersonalizadoOp';
-import Reclamos from './operaciones/licitaciones';
+import Reclamos from './operaciones/reclamos';
 import LlamadosPorOperacion from './operaciones/llamadosPorOperacion';
 import Reintegros from './operaciones/reintegros';
 import Reportes from './operaciones/reportes';

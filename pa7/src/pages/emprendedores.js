@@ -1,13 +1,14 @@
 import React from 'react'
-import Sidenav from '../components/sidenav';
+import { Route,Routes } from 'react-router-dom';
+import Circulares from './emprendedores/circulares';
 
 function Emprendedores() {
 
     return (
         <div>
-             <Sidenav>
-            <h1>Emprendedores</h1>
-            </Sidenav>
+            <Routes>
+                <Route path="Circulares" element={<Circulares/>}/>
+            </Routes>
         </div>
     )
 

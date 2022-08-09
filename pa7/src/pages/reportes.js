@@ -5,10 +5,9 @@ function Reportes() {
 
     return (
         <Sidenav>
-        <div>
-            
-            <h1>Reportes</h1>
-        </div>
+             <div>
+                 <h1>Reportes</h1>
+            </div>
         </Sidenav>
     )
 

@@ -194,57 +194,7 @@ img{
 
   /* DISPLAY SHOW */
 
-  ul li .op-show.show{
-    display:block;
-  }
-
-  ul li .mp-show.show{
-    display:block;
-  }
-
-  ul li .mora-show.show{
-    display:block;
-  }
-
-  ul li .call-show.show{
-    display:block;
-  }
-
-  ul li .per-show.show{
-    display:block;
-  }
-
-  ul li .empre-show.show{
-    display:block;
-  }
   
-  ul li .config-show.show{
-    display:block;
-  }
-  
-  ul li .cont-show.show{
-    display:block;
-  }
-
-  ul li .rep-show.show{
-    display:block;
-  }
-
-  ul li .plan-s-show.show{
-    display:block;
-  }
-
-  ul li .entr-conv-show.show{
-    display:block;
-  }
-
-  ul li .compra-show.show{
-    display:block;
-  }
-
-  ul li .usados-show.show{
-    display:block;
-  }
 
   .sidebar input{
     font-size: 15px;

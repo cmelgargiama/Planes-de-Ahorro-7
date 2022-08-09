@@ -1,13 +1,20 @@
 import React from 'react'
-import Sidenav from '../components/sidenav';
+import { Route, Routes } from 'react-router-dom';
+import AltaYModificacionDeConvencionales from './entregasConvencionales/altaYModificacionDeConvencionales';
+import SeguimientoService from './entregasConvencionales/seguimientoService';
+import Turnos from './entregasConvencionales/turnos';
+import Missing from './missing';
 
 function EntregasConvencionales() {
 
     return (
         <div>
-            <Sidenav>
-            <h1>Entregas Convencionales</h1>
-            </Sidenav>
+            <Routes>
+                <Route path="AltaYModificacionDeConvencionales" element={<AltaYModificacionDeConvencionales/>} />
+                <Route path="Turnos" element={<Turnos/>} />
+                <Route path="SeguimientoService" element={<SeguimientoService/>} />
+                <Route path="*" element={<Missing />} />       
+            </Routes>
         </div>
     )
 
