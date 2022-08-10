@@ -414,6 +414,8 @@ const Sidenav = ({children}) => {
     return code == "1.15.14"}
     const usadosVendedoresABM = (code) =>{
     return code == "1.15.15"}
+    const usadosCapitalVehiculosUsados = (code) =>{
+    return code == "1.15.16"}
     const usadosControlPrecioToma = (code) =>{
     return code == "1.15.17"}
     const usadosAnalisisIngresoEgreso = (code) =>{
@@ -657,6 +659,7 @@ const Sidenav = ({children}) => {
     const roleUsadosImagenes = role.filter(usadosImagenes);
     const roleUsadosVendedoresABM = role.filter(usadosVendedoresABM);
     const roleUsadosControlPrecioToma = role.filter(usadosControlPrecioToma);
+    const roleUsadosCapitalVehiculosUsados = role.filter(usadosCapitalVehiculosUsados)
     const roleUsadosAnalisisIngresoEgreso = role.filter(usadosAnalisisIngresoEgreso);
     //PILOT
     const rolePilot = role.filter(pilot);
@@ -725,7 +728,7 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
     var roleOperacionesReportesFlag = false;
     //MESA DE PLANES
     var roleMesaDePlanesFlag = false;
-    var roleMesaDePlanesMesaDePlanesFlag = false;
+    var roleMesaDePlanesAdministracionAhorristasAdjudicadosFlag = false;
     var roleMesaDePlanesScoringFlag = false;
     var roleMesaDePlanesStockParaVentasFlag = false;
     var roleMesaDePlanesAutorizadorClasificacionesFlag = false;
@@ -868,7 +871,8 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
     var roleUsadosCargarPVSFlag = false; 
     var roleUsadosModificarTasaPorTenenciaFlag = false;
     var roleUsadosImagenesFlag = false; 
-    var roleUsadosVendedoresABMFlag = false; 
+    var roleUsadosVendedoresABMFlag = false;
+    var roleUsadosCapitalVehiculosUsadosFlag = false; 
     var roleUsadosControlPrecioTomaFlag = false; 
     var roleUsadosAnalisisIngresoEgresoFlag = false; 
     //PILOT
@@ -952,7 +956,7 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
     {roleMesaDePlanesFlag = true}
         //NIVEL 2
     if(roleMaster == "1" || roleMesaDePlanesAdministracionAhorristasAdjudicados == "1.3.1")
-    {roleMesaDePlanesAdministracionAhorristasAdjudicados = true}
+    {roleMesaDePlanesAdministracionAhorristasAdjudicadosFlag = true}
     if(roleMaster == "1" || roleMesaDePlanesScoring == "1.3.2")
     {roleMesaDePlanesScoringFlag = true}
     if(roleMaster == "1" || roleMesaDePlanesHaberesNetos == "1.3.3")
@@ -1215,6 +1219,8 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
     {roleUsadosImagenesFlag = true}
     if(roleMaster == "1" || roleUsadosVendedoresABM == "1.15.15")
     {roleUsadosVendedoresABMFlag = true}
+    if(roleMaster == "1" || roleUsadosCapitalVehiculosUsados == "1.15.16")
+    {roleUsadosCapitalVehiculosUsadosFlag = true}
     if(roleMaster == "1" || roleUsadosControlPrecioToma == "1.15.17")
     {roleUsadosControlPrecioTomaFlag = true}
     if(roleMaster == "1" || roleUsadosAnalisisIngresoEgreso == "1.15.18")
@@ -1580,14 +1586,30 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Plan Subite Fiat
                     <i ><BiChevronDown onClick={toggleDropPlanSubite} className="toggle"/></i>
                     <ul className={ isDroppedPlanSubite ? "plan-s-show show"  : "ul"} >
-                    <li><Link to="/plansubite/Oficiales">Oficiales</Link></li>
-                    <li><Link to="/plansubite/ReporteDeCompras">Reporte de Compras</Link></li>
-                    <li><Link to="/plansubite/ImportacionDeDatos">Importación de Datos</Link></li>
-                    <li><Link to="/plansubite/GestionDeDatos">Gestión de Datos</Link></li>
-                    <li><Link to="/plansubite/AsignacionDeDatos">Asignación de Datos</Link></li>
-                    <li><Link to="/plansubite/EstadoDeLaGestion">Estado de la Gestión</Link></li>
-                    <li><Link to="/plansubite/ReporteDeAsignacionesPorPeriodo">Reporte de Asignaciones por Período</Link></li>
-                    <li><Link to="/plansubite/ImportacionDeHN">Importación de HN</Link></li>
+                    {rolePlanSubiteOficialesFlag == true
+                    ?<li><Link to="/plansubite/Oficiales">Oficiales</Link></li>
+                    :<li><Link to="">Oficiales</Link></li>}
+                    {rolePlanSubiteReporteDeComprasFlag == true
+                    ?<li><Link to="/plansubite/ReporteDeCompras">Reporte de Compras</Link></li>
+                    :<li><Link to="">Reporte de Compras</Link></li>}
+                    {rolePlanSubiteImportacionDeDatosFlag == true
+                    ?<li><Link to="/plansubite/ImportacionDeDatos">Importación de Datos</Link></li>
+                    :<li><Link to="">Importación de Datos</Link></li>}
+                    {rolePlanSubiteGestionDeDatosFlag == true
+                    ?<li><Link to="/plansubite/GestionDeDatos">Gestión de Datos</Link></li>
+                    :<li><Link to="">Gestión de Datos</Link></li>}
+                    {rolePlanSubiteAsignacionDeDatosFlag == true
+                    ?<li><Link to="/plansubite/AsignacionDeDatos">Asignación de Datos</Link></li>
+                    :<li><Link to="">Asignación de Datos</Link></li>}
+                    {rolePlanSubiteEstadoDeLaGestionFlag ==true
+                    ?<li><Link to="/plansubite/EstadoDeLaGestion">Estado de la Gestión</Link></li>
+                    :<li><Link to="">Estado de la Gestión</Link></li>}
+                    {rolePlanSubiteReporteDeAsignacionesPorPeriodoFlag == true
+                    ?<li><Link to="/plansubite/ReporteDeAsignacionesPorPeriodo">Reporte de Asignaciones por Período</Link></li>
+                    :<li><Link to="">Reporte de Asignaciones por Período</Link></li>}
+                    {rolePlanSubiteImportacionDeHNFlag == true
+                    ?<li><Link to="/plansubite/ImportacionDeHN">Importación de HN</Link></li>
+                    :<li><Link to="">Importación de HN</Link></li>}
                 </ul></div>
                 </NavLink>
                 <NavLink to=''  className="link" activeclassName="active">
@@ -1595,9 +1617,15 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Entregas Convencionales
                     <i ><BiChevronDown onClick={toggleDropEntregaConvencionales} className="toggle"/></i>
                     <ul className={ isDroppedEntregaConvencionales ? "entre-show show"  : "ul"} >
-                    <li><Link to="/entregasConvencionales/AltaYModificacionDeConvencionales">Alta y Modificación de Convencionales</Link></li>
-                    <li><Link to="/entregasConvencionales/Turnos">Turnos</Link></li>
-                    <li><Link to="/entregasConvencionales/SeguimientoService">Seguimiento Service</Link></li>
+                    {roleEntregasConvencionalesAltaYModificacionDeConvencionalesFlag == true
+                    ?<li><Link to="/entregasConvencionales/AltaYModificacionDeConvencionales">Alta y Modificación de Convencionales</Link></li>
+                    :<li><Link to="">Alta y Modificación de Convencionales</Link></li>}
+                    {roleEntregasConvencionalesTurnosFlag == true
+                    ?<li><Link to="/entregasConvencionales/Turnos">Turnos</Link></li>
+                    :<li><Link to="">Turnos</Link></li>}
+                    {roleEntregasConvencionalesSeguimientoServiceFlag == true
+                    ?<li><Link to="/entregasConvencionales/SeguimientoService">Seguimiento Service</Link></li>
+                    :<li><Link to="">Seguimiento Service</Link></li>}
                 </ul></div>
                 </NavLink>
                 <NavLink to=''  className="link" activeclassName="active">
@@ -1605,11 +1633,21 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Compra Rescindidos
                     <i ><BiChevronDown onClick={toggleDropCompraRescindidos} className="toggle"/></i>
                     <ul className={ isDroppedCompraRescindidos ? "compra-show show"  : "ul"} >
-                    <li><Link to="/compra/Oficiales">Oficiales</Link></li>
-                    <li><Link to="/compra/EstadoDeLaGestion">Estado de la Gestión</Link></li>
-                    <li><Link to="/compra/GestionDeDatos">Gestión de Datos</Link></li>
-                    <li><Link to="/compra/AsignacionDeDatos">Asignación de Datos</Link></li>
-                    <li><Link to="/compra/ImportacionDeDatos">Importación de Datos</Link></li>
+                    {roleCompraRescindidosOficialesFlag == true
+                    ?<li><Link to="/compra/Oficiales">Oficiales</Link></li>
+                    :<li><Link to="">Oficiales</Link></li>}
+                    {roleCompraRescindidosEstadoDeLaGestionFlag == true
+                    ?<li><Link to="/compra/EstadoDeLaGestion">Estado de la Gestión</Link></li>
+                    :<li><Link to="">Estado de la Gestión</Link></li>}
+                    {roleCompraRescindidosGestionDeDatosFlag == true
+                    ?<li><Link to="/compra/GestionDeDatos">Gestión de Datos</Link></li>
+                    :<li><Link to="">Gestión de Datos</Link></li>}
+                    {roleCompraRescindidosAsignacionDeDatosFlag == true
+                    ?<li><Link to="/compra/AsignacionDeDatos">Asignación de Datos</Link></li>
+                    :<li><Link to="">Asignación de Datos</Link></li>}
+                    {roleCompraRescindidosImportacionDeDatosFlag == true
+                    ?<li><Link to="/compra/ImportacionDeDatos">Importación de Datos</Link></li>
+                    :<li><Link to="">Importación de Datos</Link></li>}
                 </ul></div>
                 </NavLink>
                 <NavLink to=''  className="link" activeclassName="active">
@@ -1617,25 +1655,57 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Usados
                     <i ><BiChevronDown onClick={toggleDropUsados} className="toggle"/></i>
                     <ul className={ isDroppedUsados ? "usados-show show"  : "ul"} >
-                    <li><Link to="/usados/Cotizaciones">Cotizaciones</Link></li>
-                    <li><Link to="/usados/CotizacionesGenerales">Cotizaciones Generales</Link></li>
-                    <li><Link to="/usados/UnidadesAprobadasPlanDeAhorroARecibir">Unidades Aprobadas Plan de Ahorro a Recibir</Link></li>
-                    <li><Link to="/usados/UnidadesAprobadasConvencionalARecibir">Unidades Aprobadas Convencional a Recibir</Link></li>
-                    <li><Link to="/usados/ResumenUsadosInterempresa">Resumen Usados (Interempresa)</Link></li>
-                    <li><Link to="/usados/CargaTasaPorTenencia">Carga Tasa por Tenencia</Link></li>
-                    <li><Link to="/usados/AnalisisIngresoEgreso">Análisis Ingreso Egreso</Link></li>
-                    <li><Link to="/usados/Stock">Stock</Link></li>
-                    <li><Link to="/usados/StockInterempresa">Stock Interempresa</Link></li>
-                    <li><Link to="/usados/EgresoDeUnidadesYVentas">Egreso de Unidades y Ventas</Link></li>
-                    <li><Link to="/usados/VentasInterempresa">Ventas Interempresa</Link></li>
-                    <li><Link to="/usados/ListadoParaVentas">Listado para Ventas</Link></li>
-                    <li><Link to="/usados/ListadoParaVentasInterempresa">Listado para Ventas (Interempresa)</Link></li>
-                    <li><Link to="/usados/VendedoresUsados">Vendedores Usados</Link></li>
-                    <li><Link to="/usados/ControlPrecioToma">Control Precio Toma</Link></li>
-                    <li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>
+                    {roleUsadosCotizacionesFlag == true
+                    ?<li><Link to="/usados/Cotizaciones">Cotizaciones</Link></li>
+                    :<li><Link to="/usados/Cotizaciones">Cotizaciones</Link></li>}
+                    {roleUsadosCotizacionGerenciaFlag == true
+                    ?<li><Link to="/usados/CotizacionesGenerales">Cotizaciones Generales</Link></li>
+                    :<li><Link to="/usados/CotizacionesGenerales">Cotizaciones Generales</Link></li>}
+                    {roleUsadosRecepcionDeUnidadesPlanDeAhorroFlag == true
+                    ?<li><Link to="/usados/UnidadesAprobadasPlanDeAhorroARecibir">Unidades Aprobadas Plan de Ahorro a Recibir</Link></li>
+                    :<li><Link to="/usados/UnidadesAprobadasPlanDeAhorroARecibir">Unidades Aprobadas Plan de Ahorro a Recibir</Link></li>}
+                    {roleUsadosRecepcionDeUnidadesConvencionalFlag == true
+                    ?<li><Link to="/usados/UnidadesAprobadasConvencionalARecibir">Unidades Aprobadas Convencional a Recibir</Link></li>
+                    :<li><Link to="/usados/UnidadesAprobadasConvencionalARecibir">Unidades Aprobadas Convencional a Recibir</Link></li>}
+                    {roleUsadosResumenUsadosInterempresaFlag == true
+                    ?<li><Link to="/usados/ResumenUsadosInterempresa">Resumen Usados (Interempresa)</Link></li>
+                    :<li><Link to="/usados/ResumenUsadosInterempresa">Resumen Usados (Interempresa)</Link></li>}
+                    {roleUsadosModificarTasaPorTenenciaFlag == true
+                    ?<li><Link to="/usados/CargaTasaPorTenencia">Carga Tasa por Tenencia</Link></li>
+                    :<li><Link to="/usados/CargaTasaPorTenencia">Carga Tasa por Tenencia</Link></li>}
+                    {roleUsadosAnalisisIngresoEgresoFlag == true
+                    ?<li><Link to="/usados/AnalisisIngresoEgreso">Análisis Ingreso Egreso</Link></li>
+                    :<li><Link to="/usados/AnalisisIngresoEgreso">Análisis Ingreso Egreso</Link></li>}
+                    {roleUsadosStockFlag == true
+                    ?<li><Link to="/usados/Stock">Stock</Link></li>
+                    :<li><Link to="/usados/Stock">Stock</Link></li>}
+                    {roleUsadosStockFlag == true
+                    ?<li><Link to="/usados/StockInterempresa">Stock Interempresa</Link></li>
+                    :<li><Link to="/usados/StockInterempresa">Stock Interempresa</Link></li>}
+                    {roleUsadosEgresoDeUnidadesFlag == true
+                    ?<li><Link to="/usados/EgresoDeUnidadesYVentas">Egreso de Unidades y Ventas</Link></li>
+                    :<li><Link to="/usados/EgresoDeUnidadesYVentas">Egreso de Unidades y Ventas</Link></li>}
+                    {roleUsadosVentasInterempresaFlag == true
+                    ?<li><Link to="/usados/VentasInterempresa">Ventas Interempresa</Link></li>
+                    :<li><Link to="/usados/VentasInterempresa">Ventas Interempresa</Link></li>}
+                    {roleUsadosListadoDeVentasFlag == true
+                    ?<li><Link to="/usados/ListadoParaVentas">Listado para Ventas</Link></li>
+                    :<li><Link to="/usados/ListadoParaVentas">Listado para Ventas</Link></li>}
+                    {roleUsadosListadoDeVentasInterempresaFlag == true
+                    ?<li><Link to="/usados/ListadoParaVentasInterempresa">Listado para Ventas (Interempresa)</Link></li>
+                    :<li><Link to="/usados/ListadoParaVentasInterempresa">Listado para Ventas (Interempresa)</Link></li>}
+                    {roleUsadosVendedoresABMFlag == true
+                    ?<li><Link to="/usados/VendedoresUsados">Vendedores Usados</Link></li>
+                    :<li><Link to="/usados/VendedoresUsados">Vendedores Usados</Link></li>}
+                    {roleUsadosControlPrecioTomaFlag == true
+                    ?<li><Link to="/usados/ControlPrecioToma">Control Precio Toma</Link></li>
+                    :<li><Link to="/usados/ControlPrecioToma">Control Precio Toma</Link></li>}
+                    {roleUsadosCapitalVehiculosUsadosFlag == true
+                    ?<li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>
+                    :<li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>}12
                 </ul></div>
                 </NavLink>
-                <NavLink to=''  className="link" activeclassName="active">
+                <NavLink to='/stockvehiculos'  className="link" activeclassName="active">
                     <div className="icon"><BiBus/></div>
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Stock Vehiculos Plan Ahorro</div>
                 </NavLink>
