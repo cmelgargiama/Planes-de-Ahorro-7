@@ -1702,7 +1702,7 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     :<li><Link to="/usados/ControlPrecioToma">Control Precio Toma</Link></li>}
                     {roleUsadosCapitalVehiculosUsadosFlag == true
                     ?<li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>
-                    :<li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>}12
+                    :<li><Link to="/usados/CapitalVehiculosUsados">Capital Vehículos Usados</Link></li>}
                 </ul></div>
                 </NavLink>
                 <NavLink to='/stockvehiculos'  className="link" activeclassName="active">
