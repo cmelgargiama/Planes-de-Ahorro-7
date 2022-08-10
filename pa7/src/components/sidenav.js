@@ -1565,16 +1565,33 @@ console.log(roleOperacionesActualizacionPreSolNuevoPago)
                     <div style={{display: isOpen ? "block" : "none"}} className="link_text">Contabilidad
                     <i ><BiChevronDown onClick={toggleDropContabilidad} className="toggle"/></i>
                     <ul className={ isDroppedContabilidad ? "cont-show show"  : "ul"} >
-                    
-                    <li><Link to="/contabilidad/Tesoreria">Tesorería</Link></li>
-                    <li><Link to="/contabilidad/Ventas">Ventas</Link></li>
-                    <li><Link to="/contabilidad/Bancos">Bancos</Link></li>
-                    <li><Link to="/contabilidad/ContabilidadGeneral">Contabilidad General</Link></li>
-                    <li><Link to="/contabilidad/Compras">Compras</Link></li>
-                    <li><Link to="/contabilidad/CentroDeCostos">Centro de Costos</Link></li>
-                    <li><Link to="/contabilidad/Proveedores">Proveedores</Link></li>
-                    <li><Link to="/contabilidad/Presupuestos">Presupuestos</Link></li>
-                    <li><Link to="/contabilidad/PatentamientoPlanDeAhorro">Patentamientos Plan de Ahorro</Link></li>
+                    {roleContabilidad1TesoreriaFlag == true
+                    ?<li><Link to="/contabilidad/Tesoreria">Tesorería</Link></li>
+                    :<li><Link to="">Tesorería</Link></li>}
+                    {roleContabilidad1VentasFlag == true
+                    ?<li><Link to="/contabilidad/Ventas">Ventas</Link></li>
+                    :<li><Link to="">Ventas</Link></li>}
+                    {roleContabilidad1BancosFlag == true
+                    ?<li><Link to="/contabilidad/Bancos">Bancos</Link></li>
+                    :<li><Link to="">Bancos</Link></li>}
+                    {roleContabilidad1ContabilidadGeneralFlag == true
+                    ?<li><Link to="/contabilidad/ContabilidadGeneral">Contabilidad General</Link></li>
+                    :<li><Link to="">Contabilidad General</Link></li>}
+                    {roleContabilidad1ComprasFlag == true
+                    ?<li><Link to="/contabilidad/Compras">Compras</Link></li>
+                    :<li><Link to="">Compras</Link></li>}
+                    {roleContabilidad1CentroDeCostosFlag == true
+                    ?<li><Link to="/contabilidad/CentroDeCostos">Centro de Costos</Link></li>
+                    :<li><Link to="">Centro de Costos</Link></li>}
+                    {roleContabilidad1ProveedoresFlag == true
+                    ?<li><Link to="/contabilidad/Proveedores">Proveedores</Link></li>
+                    :<li><Link to="">Proveedores</Link></li>}
+                    {roleContabilidad1PresupuestosFlag == true
+                    ?<li><Link to="/contabilidad/Presupuestos">Presupuestos</Link></li>
+                    :<li><Link to="">Presupuestos</Link></li>}
+                    {roleContabilidad1PatentamientosPlanDeAhorroFlag == true
+                    ?<li><Link to="/contabilidad/PatentamientoPlanDeAhorro">Patentamientos Plan de Ahorro</Link></li>
+                    :<li><Link to="">Patentamientos Plan de Ahorro</Link></li>}
                 </ul></div>
                 </NavLink>
                 <NavLink to=''  className="link" activeclassName="active">
